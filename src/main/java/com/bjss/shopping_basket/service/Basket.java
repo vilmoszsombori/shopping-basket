@@ -1,6 +1,6 @@
 package com.bjss.shopping_basket.service;
 
-import com.bjss.shopping_basket.domain.Item;
+import com.bjss.shopping_basket.model.Item;
 
 public interface Basket {
 

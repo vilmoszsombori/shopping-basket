@@ -1,4 +1,4 @@
-package com.bjss.shopping_basket.domain;
+package com.bjss.shopping_basket.model;
 
 public abstract class Item {
 

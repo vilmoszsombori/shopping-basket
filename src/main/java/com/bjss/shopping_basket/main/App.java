@@ -1,9 +1,9 @@
-package com.bjss.shopping_basket;
+package com.bjss.shopping_basket.main;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.bjss.shopping_basket.domain.Item;
+import com.bjss.shopping_basket.model.Item;
 import com.bjss.shopping_basket.service.Basket;
 import com.bjss.shopping_basket.service.PriceCalculator;
 import com.bjss.shopping_basket.service.Receipt;

@@ -1,7 +1,7 @@
 package com.bjss.shopping_basket.service.impl;
 
-import com.bjss.shopping_basket.domain.Bread;
-import com.bjss.shopping_basket.domain.Item;
+import com.bjss.shopping_basket.model.Bread;
+import com.bjss.shopping_basket.model.Item;
 import com.bjss.shopping_basket.service.Basket;
 import com.bjss.shopping_basket.service.Offer;
 

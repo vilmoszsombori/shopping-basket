@@ -1,13 +1,12 @@
 package com.bjss.shopping_basket.service.impl;
 
 import com.bjss.shopping_basket.service.PriceCalculator;
+import com.bjss.shopping_basket.model.Item;
 import com.bjss.shopping_basket.service.Basket;
 import com.bjss.shopping_basket.service.Offer;
 
 import java.util.Collection;
 import java.util.HashSet;
-
-import com.bjss.shopping_basket.domain.Item;
 
 public class PriceCalculatorImpl implements PriceCalculator {
 

@@ -3,9 +3,9 @@ package com.bjss.shopping_basket.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.bjss.shopping_basket.model.Item;
+import com.bjss.shopping_basket.model.Item.Type;
 import com.bjss.shopping_basket.service.Basket;
-import com.bjss.shopping_basket.domain.Item;
-import com.bjss.shopping_basket.domain.Item.Type;
 
 public class BasketImpl implements Basket {
 
