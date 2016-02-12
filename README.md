@@ -42,11 +42,18 @@ Total price: £1.30
 
 The code is well structured, commented, has a limited degree of error handling and it has a few key unit tests. The design is sufficiently flexible to allow future changes to the product list and/or discounts applied. 
 
-It is an Eclipse/Maven project and it can be launched from the command line, once built, with:
+It is an Java 8 / Maven command line application. Use Maven to build it:
 
 ```
-mvn exec:java -Dexec.args="Apples Bread Milk"
+mvn clean package
 ```
+
+To launch it:
+
+```
+java -cp target/shopping-basket-0.0.1.jar PriceBasket Apples Apples Milk Bread Soup Soup
+```
+
 
 ## Design
 
