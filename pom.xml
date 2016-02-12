@@ -4,7 +4,7 @@
 
     <groupId>com.bjss</groupId>
     <artifactId>shopping-basket</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <packaging>jar</packaging>
 
     <name>shopping-basket</name>
@@ -52,7 +52,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>com.bjss.shopping_basket.App</mainClass>
+                            <mainClass>PriceBasket</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

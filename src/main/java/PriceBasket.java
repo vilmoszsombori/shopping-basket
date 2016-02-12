@@ -1,5 +1,3 @@
-package com.bjss.shopping_basket.main;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -13,7 +11,7 @@ import com.bjss.shopping_basket.service.impl.BreadOffer;
 import com.bjss.shopping_basket.service.impl.PriceCalculatorImpl;
 import com.bjss.shopping_basket.service.impl.ReceiptImpl;
 
-public class App {
+public class PriceBasket {
 
     public static void main(String[] args) {
         Collection<Item> items = new ArrayList<Item>();

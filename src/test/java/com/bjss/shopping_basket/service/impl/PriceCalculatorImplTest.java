@@ -1,9 +1,12 @@
 package com.bjss.shopping_basket.service.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +17,7 @@ import com.bjss.shopping_basket.service.Offer;
 import com.bjss.shopping_basket.service.PriceCalculator;
 
 public class PriceCalculatorImplTest {
-    
+
     private static final double PRICE_TOLERANCE = .00001;
 
     @SuppressWarnings("serial")
@@ -70,23 +73,25 @@ public class PriceCalculatorImplTest {
     @Test
     public void testDiscountWithoutOffer() {
         PriceCalculator priceCalculator = new PriceCalculatorImpl();
-        assertEquals(0, priceCalculator.getDiscount(basket), PRICE_TOLERANCE);
+        assertTrue(priceCalculator.getDiscounts(basket).isEmpty());
     }
 
     @Test
     public void testDiscountWithApplesOffer() {
         Offer applesOffer = new ApplesOffer();
         PriceCalculator priceCalculator = new PriceCalculatorImpl(new ApplesOffer());
-        assertEquals(applesOffer.getDiscount(basket), priceCalculator.getDiscount(basket),
-                PRICE_TOLERANCE);
+        double discount = priceCalculator.getDiscounts(basket).entrySet().stream()
+                .collect(Collectors.summingDouble(Entry::getValue));
+        assertEquals(applesOffer.getDiscount(basket), discount, PRICE_TOLERANCE);
     }
 
     @Test
     public void testDiscountWithBreadOffer() {
         Offer breadOffer = new BreadOffer();
         PriceCalculator priceCalculator = new PriceCalculatorImpl(new BreadOffer());
-        assertEquals(breadOffer.getDiscount(basket), priceCalculator.getDiscount(basket),
-                PRICE_TOLERANCE);
+        double discount = priceCalculator.getDiscounts(basket).entrySet().stream()
+                .collect(Collectors.summingDouble(Entry::getValue));
+        assertEquals(breadOffer.getDiscount(basket), discount, PRICE_TOLERANCE);
     }
 
     @Test
@@ -95,8 +100,10 @@ public class PriceCalculatorImplTest {
         Offer breadOffer = new BreadOffer();
         PriceCalculator priceCalculator =
                 new PriceCalculatorImpl(new ApplesOffer(), new BreadOffer());
-        assertEquals(applesOffer.getDiscount(basket) + breadOffer.getDiscount(basket),
-                priceCalculator.getDiscount(basket), PRICE_TOLERANCE);
+        double discount = priceCalculator.getDiscounts(basket).entrySet().stream()
+                .collect(Collectors.summingDouble(Entry::getValue));
+        assertEquals(applesOffer.getDiscount(basket) + breadOffer.getDiscount(basket), discount,
+                PRICE_TOLERANCE);
     }
 
 }

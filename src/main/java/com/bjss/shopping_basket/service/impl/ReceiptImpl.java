@@ -1,6 +1,9 @@
 package com.bjss.shopping_basket.service.impl;
 
 import java.util.Collection;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import com.bjss.shopping_basket.service.Basket;
 import com.bjss.shopping_basket.service.Offer;
@@ -11,26 +14,34 @@ public class ReceiptImpl implements Receipt {
 
     @Override
     public String generate(Basket basket, PriceCalculator priceCalculator) {
-        String offerString = "";
-
-        Collection<Offer> offers = priceCalculator.getApplicableOffers(basket);
-        double initialPrice = priceCalculator.getInitialPrice(basket);
-        double discount = priceCalculator.getDiscount(basket);
-
-        if (offers.isEmpty()) {
-            offerString = "(No offers available)\n";
-        } else {
-            for (Offer offer : offers)
-                offerString += offer.getDescription() + "; ";
-            if (offerString.endsWith("; "))
-                offerString = offerString.substring(0, offerString.length() - 2);
-            offerString += String.format(": -£%.2f%n", discount);
+        if (basket.isEmpty()) {
+            return "Basket is empty";
         }
 
-        String str = String.format("Subtotal: £%.2f%n" + offerString + "Total: £%.2f%n",
-                initialPrice, initialPrice - discount);
+        double initialPrice = priceCalculator.getInitialPrice(basket);
+        double discount = 0;
+        StringBuilder builder = new StringBuilder();
 
-        return str;
+        builder.append(String.format("Subtotal: £%.2f", initialPrice));
+
+        Collection<Offer> offers = priceCalculator.getApplicableOffers(basket);
+        if (offers.isEmpty()) {
+            builder.append(System.lineSeparator());
+            builder.append("(No offers available)");
+        } else {
+            Map<Offer, Double> discounts = priceCalculator.getDiscounts(basket);
+            discounts.forEach((k, v) -> {
+                builder.append(System.lineSeparator());
+                builder.append(String.format("%s: -£%.2f", k.getDescription(), v));
+            });
+            discount = discounts.entrySet().stream()
+                    .collect(Collectors.summingDouble(Entry::getValue));
+        }
+
+        builder.append(System.lineSeparator());
+        builder.append(String.format("Total: £%.2f", (initialPrice - discount)));
+
+        return builder.toString();
     }
 
 }

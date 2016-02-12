@@ -6,7 +6,9 @@ import com.bjss.shopping_basket.service.Basket;
 import com.bjss.shopping_basket.service.Offer;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class PriceCalculatorImpl implements PriceCalculator {
 
@@ -28,12 +30,12 @@ public class PriceCalculatorImpl implements PriceCalculator {
     }
 
     @Override
-    public double getDiscount(Basket basket) {
-        double v = 0;
+    public Map<Offer, Double> getDiscounts(Basket basket) {
+        Map<Offer, Double> discounts = new HashMap<>();
         for (Offer offer : offers)
             if (offer.isApplicable(basket))
-                v += offer.getDiscount(basket);
-        return v;
+                discounts.put(offer, offer.getDiscount(basket));
+        return discounts;
     }
 
     @Override
