@@ -47,3 +47,13 @@ It is an Eclipse/Maven project and it can be launched from the command line, onc
 ```
 mvn exec:java -Dexec.args="Apples Bread Milk"
 ```
+
+## Design
+
+### Package structure
+
+![Package structure](https://raw.githubusercontent.com/vilmoszsombori/shopping-basket/master/doc/package-diagram.png "Package structure")
+
+### Class diagram
+
+![Class diagram](https://raw.githubusercontent.com/vilmoszsombori/shopping-basket/master/doc/class-diagram.png "Class diagram")
